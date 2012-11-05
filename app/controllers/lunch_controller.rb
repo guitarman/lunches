@@ -3,7 +3,7 @@ class LunchController < ApplicationController
     @restaurants = Restaurant.all
 
     respond_to do |format|
-      format.html #index.html.erb
+      format.html
       #format.xml { render:xml => @restaurants }
     end
   end
