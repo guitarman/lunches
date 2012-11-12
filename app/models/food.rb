@@ -1,4 +1,6 @@
 class Food < ActiveRecord::Base
   attr_accessible :name
-  belongs_to :day_menu
+
+  has_many :day_menus
+  has_many :restaurants, :through => :day_menus
 end
