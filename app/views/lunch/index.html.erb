@@ -1,22 +1,32 @@
 <div class="lunches">
   <% @restaurants.each do |restaurant| %>
-    <%= restaurant.name %><br />
+      <table class="lunch_table" border="1" width="85%">
+        <tr>
+          <th colspan="2">
+            <%= restaurant.name %>, <%= restaurant.address %>
+          </th>
+        </tr>
+        <tr class="alt">
+          <td>1. </td>
+          <td>0.33l Šošovicová kyslá</td>
+        </tr>
+        <tr>
+          <td>2. </td>
+          <td>0.33l Brokolicová</td>
+        </tr>
+        <tr class="alt">
+          <td>3. </td>
+          <td>100g Sviečková na smotane z bravčového mäsa, 150g žemľové knedle</td>
+        </tr>
+        <tr>
+          <td>4. </td>
+          <td>100g Restované morčacie rezančeky s cuketou, fazuľovými luskami a cherry paradajkami, 150g dusená ryža</td>
+        </tr>
+        <tr class="alt">
+          <td>5. </td>
+          <td>300g Kelový prívarok s duseným bravčovým mäsom 100g, chlieb</td>
+        </tr>
+      </table>
+      <br />
   <% end %>
-  <div class="lunch" onmouseover="this.className='lunch_over'" onmouseout="this.className='lunch'">
-    <h3>Ekonom</h3>
-    Polievky:
-    <ol>
-      <li>0.33l Brokolicová (1,7)</li>
-      <li>0.33l Šošovicová kyslá (1,7)</li>
-    </ol>
-    Hlavné jedlo:
-    <ol>
-      <li>100g Sviečková na smotane z bravčového mäsa, 150g žemľové knedle (1,3,7,10)</li>
-      <li>100g Restované morčacie rezančeky s cuketou, fazuľovými luskami a cherry paradajkami, 150g dusená ryža (1)</li>
-      <li>300g Kelový prívarok s duseným bravčovým mäsom 100g, chlieb (1)</li>
-      <li>300g Cestoviny s jemnou smotanovou omáčkou z bazalky so syrom (1,7)</li>
-      <li>120g Grilované kuracie prsia na miešanom šaláte s cesnakovým dressingom 200g (7)</li>
-    </ol>
-  </div>
-
 </div>
