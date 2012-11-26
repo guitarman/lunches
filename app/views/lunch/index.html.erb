@@ -1,31 +1,34 @@
 <div class="lunches">
   <% @restaurants.each do |restaurant| %>
+      <% i = 1 %>
       <table class="lunch_table" border="1" width="85%">
         <tr>
           <th colspan="2">
             <%= restaurant.name %>, <%= restaurant.address %>
           </th>
         </tr>
-        <tr class="alt">
-          <td>1. </td>
-          <td>0.33l Šošovicová kyslá</td>
-        </tr>
-        <tr>
-          <td>2. </td>
-          <td>0.33l Brokolicová</td>
-        </tr>
-        <tr class="alt">
-          <td>3. </td>
-          <td>100g Sviečková na smotane z bravčového mäsa, 150g žemľové knedle</td>
-        </tr>
-        <tr>
-          <td>4. </td>
-          <td>100g Restované morčacie rezančeky s cuketou, fazuľovými luskami a cherry paradajkami, 150g dusená ryža</td>
-        </tr>
-        <tr class="alt">
-          <td>5. </td>
-          <td>300g Kelový prívarok s duseným bravčovým mäsom 100g, chlieb</td>
-        </tr>
+        <% restaurant.today_soups.each do |soup| %>
+            <% if i % 2 == 0  %>
+                <tr>
+            <% else %>
+                <tr class="alt">
+            <% end %>
+              <td width="10"><%= i %>. </td>
+              <td><%= soup.name %></td>
+            </tr>
+            <% i = i + 1 %>
+        <% end %>
+        <% restaurant.today_foods.each do |food| %>
+            <% if i % 2 == 0  %>
+                <tr>
+            <% else %>
+                <tr class="alt">
+            <% end %>
+              <td width="10"><%= i %>. </td>
+              <td><%= food.name %></td>
+            </tr>
+            <% i = i + 1 %>
+        <% end %>
       </table>
       <br />
   <% end %>
