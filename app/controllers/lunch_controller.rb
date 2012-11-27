@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'open-uri'
 require 'nokogiri'
+require 'timeout'
 
 class LunchController < ApplicationController
   def index
@@ -44,9 +45,19 @@ class LunchController < ApplicationController
   private
   def open_page(url)
     resp = ""
-    open(url) { |f|
-      resp = f.read
+    begin
+    status = Timeout::timeout(60) {
+      open(url) { |f|
+        resp = f.read
+      }
     }
+    rescue Timeout::Error => e
+      #logger.debug
+    end
+
+    if resp.empty?
+      puts "got nothing from url"
+    end
 
     Nokogiri::HTML(resp)
   end
@@ -100,10 +111,10 @@ class LunchController < ApplicationController
         end
         if nodes[i].text.include?('Obed HP') || nodes[i].text.include?('Minut')
           break
-        else
-          if @ekonom_flag
-            obed = nodes[i].text
-          end
+        #else
+        #  if @ekonom_flag
+        #    obed = nodes[i].text
+        #  end
         end
       else
         if nodes[i].text.include?('Dnes')
