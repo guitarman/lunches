@@ -18,7 +18,7 @@ class LunchController < ApplicationController
 
     @restaurants.each do |restaurant|
       if restaurant.name.include?("Ekon")
-        #get_ekonom(restaurant)
+        get_ekonom(restaurant)
       end
       if restaurant.name.include?("U Lod")
         get_lodnik(restaurant)
@@ -148,7 +148,7 @@ class LunchController < ApplicationController
   end
 
   def get_mlyn(restaurant)
-    days = %w(Pondelok Utorok Streda Stvrtok Piatok)
+    days = %w(Pondelok Utorok Streda tvrtok Piatok)
     day_num = Time.now.wday - 1
     if day_num >= 0 && day_num <= 4
       page = open_page(restaurant.url)
