@@ -79,48 +79,16 @@ class LunchController < ApplicationController
   end
 
   def get_ekonom(restaurant)
-    @day_flag = false
-    @ekonom_flag = false
     page = open_page(restaurant.url)
+    evens = page.xpath('//tr[@class = "even"]')
+    odds = page.xpath('//tr[@class = "odd"]')
+    if evens.count == 3 && odds.count == 2
+      save_soup(evens[0].text.strip, restaurant)
 
-    #Jedalny listok
-    nodes = page.xpath('//html/body/form/table/tbody/tr/td/table/tbody/tr/td/table/tr/td/table/tr')
-
-    nodes.length.times do |i|
-      if @day_flag
-        if nodes[i].text.include?('zajtra')
-          break
-        else
-          if nodes[i].text.include?('Obed E')
-            @ekonom_flag = true
-            soup_food = nodes[i].inner_html.to_s
-
-            save_soup(soup_food[soup_food.index('Polievka')..soup_food.index('</i>')-1], restaurant)
-
-            food1 = soup_food[soup_food.index('</i><br>')+8..-1]
-            food2 = nodes[i+1].text
-            food3 = nodes[i+2].text
-            food4 = nodes[i+3].text
-
-            save_food(food1[0..food1.index(' E')-1], restaurant)
-            save_food(food2[food2.index('&nbsp')+5..food2.index(' E')-1], restaurant)
-            save_food(food3[food3.index('&nbsp')+5..food3.index(' E')-1], restaurant)
-            save_food(food4[food4.index('&nbsp')+5..food4.index(' E')-1], restaurant)
-            break
-          end
-        end
-        if nodes[i].text.include?('Obed HP') || nodes[i].text.include?('Minut')
-          break
-        #else
-        #  if @ekonom_flag
-        #    obed = nodes[i].text
-        #  end
-        end
-      else
-        if nodes[i].text.include?('Dnes')
-          @day_flag = true
-        end
-      end
+      save_food(odds[0].text.strip, restaurant)
+      save_food(evens[1].text.strip, restaurant)
+      save_food(odds[1].text.strip, restaurant)
+      save_food(evens[2].text.strip, restaurant)
     end
   end
 
