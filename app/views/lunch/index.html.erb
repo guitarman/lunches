@@ -9,7 +9,7 @@
         </tr>
         <% if restaurant.today_foods.empty? && restaurant.today_soups.empty? %>
             <tr>
-              <td colspan="2" align="center">Dnes sa nenapapkáš.</td>
+              <td colspan="2">Dnes sa nenapapkáš.</td>
             </tr>
         <% else %>
             <% restaurant.today_soups.each do |soup| %>
