@@ -95,23 +95,30 @@ class LunchController < ApplicationController
   def get_lodnik(restaurant)
     page = open_page(restaurant.url)
     node = page.xpath('//div[(@class="texthelpods") and (contains(., "Polievka:"))]').first
-    if node.children().count >= 30
+    if node.children().count >= 13
       #soup
       soup = node.children()[2].text
-      #foods
-      food1 = node.children()[5].text
-      food2 = node.children()[7].text
-      food3 = node.children()[9].text
-      food4 = node.children()[11].text
-      food5 = node.children()[13].text
-
       save_soup(soup.to_s.gsub("Polievka:", "").strip, restaurant)
 
-      save_food(food1.to_s.gsub("1)","").strip, restaurant)
-      save_food(food2.to_s.gsub("2)","").strip, restaurant)
-      save_food(food3.to_s.gsub("3)","").strip, restaurant)
-      save_food(food4.to_s.gsub("4)","").strip, restaurant)
-      save_food(food5.to_s.gsub("5)","").strip, restaurant)
+      node.children().each do |child|
+          if child.text.include?("1)")
+            food1 = child.text
+            save_food(food1.to_s.gsub("1)","").strip, restaurant)
+          elsif child.text.include?('2)')
+            food2 = child.text
+            save_food(food2.to_s.gsub("2)","").strip, restaurant)
+          elsif child.text.include?('3)')
+            food3 = child.text
+            save_food(food3.to_s.gsub("3)","").strip, restaurant)
+          elsif child.text.include?('4)')
+            food4 = child.text
+            save_food(food4.to_s.gsub("4)","").strip, restaurant)
+          elsif child.text.include?('5)')
+            food5 = child.text
+            save_food(food5.to_s.gsub("5)","").strip, restaurant)
+            break
+          end
+      end
     end
   end
 
