@@ -8,37 +8,45 @@ class LunchController < ApplicationController
     @restaurants = Restaurant.all
 
     respond_to do |format|
-      format.html
+      format.html #index.html.erb
       format.xml { render :xml => @restaurants }
     end
   end
 
   def download_pages
     @restaurants = Restaurant.all
+    @messages = []
 
-    @restaurants.each do |restaurant|
-      if restaurant.name.include?("Ekon")
-        get_ekonom(restaurant)
+    begin
+      @restaurants.each do |restaurant|
+        if restaurant.name.include?("Ekon")
+          get_ekonom(restaurant)
+        end
+        if restaurant.name.include?("U Lod")
+          get_lodnik(restaurant)
+        end
+        if restaurant.name.include?("Mlyn")
+          get_mlyn(restaurant)
+        end
+        if restaurant.name.include?("Sit")
+          get_siteat(restaurant)
+        end
+        if restaurant.name.include?("Presto")
+          get_presto(restaurant)
+        end
       end
-      if restaurant.name.include?("U Lod")
-        get_lodnik(restaurant)
-      end
-      if restaurant.name.include?("Mlyn")
-        get_mlyn(restaurant)
-      end
-      if restaurant.name.include?("Sit")
-        get_siteat(restaurant)
-      end
-      if restaurant.name.include?("Presto")
-        get_presto(restaurant)
-      end
+
+    rescue Error => e
+        @messages << e.message
     end
 
-    @message = 'done'
-
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @message }
+    if @messages.any?
+      respond_to do |format|
+        format.html #download_pages.html.erb
+        format.xml { render :xml => @messages }
+      end
+    else
+      redirect_to :action => 'index'
     end
   end
 
@@ -46,17 +54,13 @@ class LunchController < ApplicationController
   def open_page(url)
     resp = ""
     begin
-    status = Timeout::timeout(60) {
+    Timeout::timeout(60) {
       open(url) { |f|
         resp = f.read
       }
     }
     rescue Timeout::Error => e
-      #logger.debug
-    end
-
-    if resp.empty?
-      puts "got nothing from url"
+      raise e
     end
 
     Nokogiri::HTML(resp)
