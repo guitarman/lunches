@@ -7,7 +7,8 @@ body {
     background-image:url('content.jpg');
     background-repeat:repeat;
     background-color: #e8ebf0;
-    font-family: 'Bitter', serif;
+    font-family: 'Noticia Text', serif;
+    font-size: 14px;
     font-weight: normal;
     color: #000000;
 }
@@ -101,6 +102,7 @@ a:hover
 
 .lunch_table th
 {
+    font-size: 17px;
     text-align: left;
     background-color: #88d9f4;
     font-weight: normal;
