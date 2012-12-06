@@ -19,7 +19,7 @@
                     <tr class="alt">
                 <% end %>
                 <td width="10"><%= i %>.</td>
-                <td><%= soup.name %></td>
+                <td><%= link_to "#{soup.name}", soup %></td>
                 </tr>
                 <% i +=1 %>
             <% end %>
@@ -30,7 +30,7 @@
                     <tr class="alt">
                 <% end %>
                 <td width="10"><%= i %>.</td>
-                <td><%= food.name %></td>
+                <td><%= link_to "#{food.name}", food %></td>
                 </tr>
                 <% i += 1 %>
             <% end %>

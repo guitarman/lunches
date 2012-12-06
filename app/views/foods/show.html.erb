@@ -1,0 +1,15 @@
+<h2><%= @food.name %></h2>
+Toto jedlo už podávali v nasledovných reštauráciach:
+<br/><br/>
+<table>
+  <% @food.day_menus.each do |day_menu| %>
+      <tr>
+        <td><%= day_menu.restaurant.name %></td>
+        <td><%= day_menu.for_day.to_date %></td>
+      </tr>
+  <% end %>
+</table>
+<br/>
+<%= link_to 'Návrat', root_url %>
+
+
