@@ -22,6 +22,10 @@
 
       <div id="content_container" class="content_container">
         <div id="content" class="content">
+
+		  <%= content_tag :p, notice, :class => 'notice' if notice.present? %>
+		  <%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+
           <%= yield %>
           <br/>
           <br/>
