@@ -13,11 +13,6 @@ class User < ActiveRecord::Base
             :presence => true,
             :if => :password_required?
 
-  has_one :profile
-  has_many :articles, :order => 'published_at DESC, title ASC',
-           :dependent => :nullify
-  has_many :replies, :through => :articles, :source => :comments
-
   before_save :encrypt_new_password
 
   def self.authenticate(email, password)
