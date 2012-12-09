@@ -7,7 +7,7 @@ body {
     background-image:url('content.jpg');
     background-repeat:repeat;
     background-color: #e8ebf0;
-    font-family: 'Noticia Text', serif;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 14px;
     font-weight: normal;
     color: #000000;
@@ -111,6 +111,7 @@ a:hover
 
 .lunch_table
 {
+
     border-collapse: collapse;
     border-color: #000000;
 }
