@@ -4,7 +4,7 @@ html, body {
 
 body {
     margin: 0;
-    background-image:url('content.jpg');
+    background-image:url('content.gif');
     background-repeat:repeat;
     background-color: #e8ebf0;
     font-family: 'Ubuntu', sans-serif;
@@ -66,6 +66,10 @@ body {
 
 .content_container
 {
+    margin-right:auto;
+    margin-left:auto;
+    width:960px;
+    box-shadow: 2px 2px 10px -2px #888,-2px 2px 10px -2px #888;
 }
 
 .content
@@ -78,6 +82,23 @@ body {
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 20px;
+}
+
+.footer
+{
+    margin-right:auto;
+    margin-left:auto;
+    width:900px;
+    border-top: 1px solid #414141;
+    height: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color: silver;
+    text-align: center;
+    color:black;
+    font-size: 80%;
 }
 
 h1
@@ -226,23 +247,4 @@ form .field_with_errors input, form .field_with_errors  textarea{
 #errorExplanation ul li {
     font-size: 12px;
     list-style: decimal;
-}
-
-.footer
-{
-    margin-right:auto;
-    margin-left:auto;
-    width:900px;
-    border-top: 1px solid #414141;
-    height: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top:5px;
-    padding-bottom:5px;
-    background-color: silver;
-    text-align: center;
-    color:black;
-    font-size: 80%;
-    border-bottom-right-radius:0.5em;
-    border-bottom-left-radius:0.5em;
 }
