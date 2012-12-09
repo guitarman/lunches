@@ -16,7 +16,17 @@
     <div id="container" class="container">
       <div id="header" class="header">
         <div id="h_content" class="h_content">
-          obedy [beta]
+		  <span class="caption">
+          	obedy [beta]
+		  </span>
+		  <span class="user_nav">
+			<% if logged_in? %>
+				<!--<%= link_to current_user.email, settings_path %>-->
+				<%= current_user.email %> | <%= link_to "Odhlásiť", logout_path %>
+			<% else %>
+				<%= link_to "Prihlásiť", login_path %> | <%= link_to "Registrovať", new_user_path %>
+			<% end %>
+		  </span>
         </div>
       </div>
 
@@ -27,7 +37,6 @@
 		  <%= content_tag :p, alert, :class => 'alert' if alert.present? %>
 
           <%= yield %>
-          <br/>
           <br/>
         </div>
       </div>

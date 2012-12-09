@@ -24,9 +24,6 @@ body {
     background-image:url('header.jpg');
     background-repeat:repeat-x;
     height: 70px;
-    font-family: 'Marvel', sans-serif;
-    font-size:50px;
-    font-weight: bold;
     color:white;
 }
 
@@ -35,6 +32,26 @@ body {
     margin-right:auto;
     margin-left:auto;
     width:900px;
+}
+
+.container .header .h_content .caption
+{
+    width: 80%;
+    font-family: 'Marvel', sans-serif;
+    font-size:50px;
+    font-weight: bold;
+    float:left;
+}
+
+.container .header .h_content .user_nav
+{
+    float:right;
+    font-size: 12px;
+}
+
+.container .header .h_content .user_nav a
+{
+    color: white;
 }
 
 .content_container

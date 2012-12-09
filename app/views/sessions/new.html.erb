@@ -1,0 +1,16 @@
+<h1>Prihlásenie</h1>
+<%= form_tag session_path do %>
+	<div class="field">
+	  <%= label_tag :email %>
+	  <%= text_field_tag :email %>
+	</div>
+	<div class="field">
+	  <%= label_tag 'Heslo' %>
+	  <%= password_field_tag :password %>
+	</div>
+	<div class="actions">
+	  <%= submit_tag 'Prihlásiť sa' %>
+	</div>
+	<br/>
+	<%= link_to 'Návrat', root_path %>
+<% end %>
