@@ -8,7 +8,6 @@ body {
     background-repeat:repeat;
     background-color: #e8ebf0;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 14px;
     font-weight: normal;
     color: #000000;
 }
@@ -36,7 +35,7 @@ body {
 
 .container .header .h_content .caption
 {
-    width: 80%;
+    max-width: 80%;
     font-family: 'Marvel', sans-serif;
     font-size:50px;
     font-weight: bold;
