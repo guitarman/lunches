@@ -121,15 +121,26 @@ a:hover
 }
 
 .notice {
-    color: green;
+    background-color: #a0ffa2;
+    margin-left: -30px;
+    margin-right: -30px;
+    position: relative;
+    padding: 10px 30px 10px 30px;
+    color: #007200;
 }
 
 .alert {
-    color: red;
+    background-color: #ffb6b1;
+    margin-left: -30px;
+    margin-right: -30px;
+    position: relative;
+    padding: 10px 30px 10px 30px;
+    color: #eb0000;
 }
 
 .lunch_table
 {
+    width: 85%;
     border-collapse: collapse;
     border-color: #000000;
 }
