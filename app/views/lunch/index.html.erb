@@ -1,7 +1,7 @@
 <div class="lunches">
   <% @restaurants.each do |restaurant| %>
       <% i = 1 %>
-      <table class="lunch_table" align="center">
+      <table class="lunch_table">
         <tr>
           <th colspan="2">
             <%= restaurant.name %>, <%= restaurant.address %>
@@ -18,7 +18,7 @@
                 <% else %>
                     <tr class="alt">
                 <% end %>
-                <td width="10"><%= i %>.</td>
+                <td class="numbering"><%= i %>.</td>
                 <td><%= link_to "#{soup.name}", soup %></td>
                 </tr>
                 <% i +=1 %>
@@ -29,7 +29,7 @@
                 <% else %>
                     <tr class="alt">
                 <% end %>
-                <td width="10"><%= i %>.</td>
+                <td class="numbering"><%= i %>.</td>
                 <td><%= link_to "#{food.name}", food %></td>
                 </tr>
                 <% i += 1 %>

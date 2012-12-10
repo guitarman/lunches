@@ -140,6 +140,7 @@ a:hover
 
 .lunch_table
 {
+    margin: auto;
     width: 85%;
     border-collapse: collapse;
     border-color: #000000;
@@ -168,6 +169,11 @@ a:hover
     font-weight: normal;
     padding: 5px 5px 5px 5px;
     border-bottom: 1px dashed;
+}
+
+.lunch_table td.numbering
+{
+    width: 10px;
 }
 
 .lunch_table tr.alt td
