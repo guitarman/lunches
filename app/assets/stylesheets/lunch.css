@@ -100,6 +100,24 @@ body {
     font-size: 80%;
 }
 
+.footer a
+{
+    text-decoration: none;
+    color:#252525;
+}
+
+.footer a:link
+{
+    color:#252525;
+}
+
+.footer a:hover
+{
+    color:#252525;
+    text-decoration: underline;
+}
+
+
 h1
 {
     color:#545454;
