@@ -1,0 +1,32 @@
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="errorExplanation">
+          <h2>Chyby:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :email %>
+      <br/>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label 'Heslo' %>
+      <br/>
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label 'Zopakovanie hesla' %>
+      <br/>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Upraviť' %>
+    </div>
+    <br />
+<% end %>

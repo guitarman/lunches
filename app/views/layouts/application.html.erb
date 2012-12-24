@@ -23,10 +23,11 @@
 		  </span>
 		  <span class="user_nav">
 			<% if logged_in? %>
-				<!--<%= link_to current_user.email, settings_path %>-->
-				<%= current_user.email %> | <%= link_to "Odhlásiť", logout_path %>
+				<%= link_to current_user.email, settings_path, :title => "Upraviť profil" %>
+				<!--<%= current_user.email %>-->
+                | <%= link_to "Odhlásiť", logout_path, :title => "Odhlásiť sa" %>
 			<% else %>
-				<%= link_to "Prihlásiť", login_path %> | <%= link_to "Registrovať", new_user_path %>
+				<%= link_to "Prihlásiť", login_path, :title => "Prihlásiť sa" %> | <%= link_to "Registrovať", new_user_path, :title => "Registrovať sa" %>
 			<% end %>
 		  </span>
         </div>
