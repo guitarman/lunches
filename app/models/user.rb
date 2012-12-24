@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
+  has_and_belongs_to_many :foods
+  has_and_belongs_to_many :soups
+
   validates :email, :uniqueness => true,
             :length => { :within => 5..50 },
             :format => { :with => /^[^@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i }
