@@ -17,3 +17,4 @@
 # ingore database.yml
 /config/database.yml
 Gemfile.lock
+.idea/*
