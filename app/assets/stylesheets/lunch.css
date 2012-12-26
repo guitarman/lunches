@@ -223,9 +223,27 @@ a:hover
 
 }
 
+.favourite td.numbering
+{
+    width: 10px;
+}
+
 .favourite td.name
 {
     min-width: 200px;
+}
+
+.favourite td.action
+{
+    width: 29px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.favourite td.action img
+{
+   opacity: 1;
 }
 
 form{
