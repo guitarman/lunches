@@ -57,9 +57,13 @@ ActiveRecord::Schema.define(:version => 20121216220905) do
     t.integer "food_id"
   end
 
+  add_index "users_foods", ["user_id", "food_id"], :name => "by_user_and_food", :unique => true
+
   create_table "users_soups", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "soup_id"
   end
+
+  add_index "users_soups", ["user_id", "soup_id"], :name => "by_user_and_soup", :unique => true
 
 end
