@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    redirect_to login_path, :notice => "Pre pokračovanie musíš byť prihlásený" and return false
+    redirect_to login_path, :alert => "Pre pokračovanie musíš byť prihlásený" and return false
   end
 
   helper_method :current_user
