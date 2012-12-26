@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
-  has_and_belongs_to_many :foods
-  has_and_belongs_to_many :soups
+  has_and_belongs_to_many :foods, :join_table => "users_foods", :uniq => true
+  has_and_belongs_to_many :soups, :join_table => "users_soups", :uniq => true
 
   validates :email, :uniqueness => true,
             :length => { :within => 5..50 },
@@ -25,6 +25,16 @@ class User < ActiveRecord::Base
 
   def authenticated?(password)
     self.password_hash == encrypt(password)
+  end
+
+  def likes_food?(food)
+    false unless food.is_a? Food
+    food == foods.find_by_id(food.id)
+  end
+
+  def likes_soup?(soup)
+    false unless soup.is_a? Soup
+    soup == soups.find_by_id(soup.id)
   end
 
   protected

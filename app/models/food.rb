@@ -4,5 +4,9 @@ class Food < ActiveRecord::Base
   has_many :day_menus
   has_many :restaurants, :through => :day_menus
 
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users, :join_table => "users_foods", :uniq => true
+
+  def to_param
+    name.parameterize
+  end
 end

@@ -1,9 +1,12 @@
+# encoding: UTF-8
 require 'rubygems'
 require 'open-uri'
 require 'nokogiri'
 require 'timeout'
 
 class LunchController < ApplicationController
+  before_filter :authenticate, :only => [:add_soup, :delete_soup, :add_food, :delete_food]
+
   def index
     @restaurants = Restaurant.all
 
@@ -47,6 +50,50 @@ class LunchController < ApplicationController
       end
     else
       redirect_to :action => 'index'
+    end
+  end
+
+  def add_soup
+    begin
+      soup = Soup.find_by_name(params[:name])
+      current_user.soups << soup
+
+      redirect_to :back, :notice => "Polievka bola pridaná k obľúbeným jedlám"
+    rescue
+      redirect_to :back, :alert => "Nastala chyba pri pridávaní polievky k obľúbeným jedlám"
+    end
+  end
+
+  def delete_soup
+    begin
+      soup = Soup.find_by_name(params[:name])
+      current_user.soups.delete(soup)
+
+      redirect_to :back, :notice => "Polievka bola odstránená z obľúbených jedál"
+    rescue
+      redirect_to :back, :alert => "Nastala chyba pri odstraňovaní polievky z obľúbených jedál"
+    end
+  end
+
+  def add_food
+    begin
+      food = Food.find_by_name(params[:name])
+      current_user.foods << food
+
+      redirect_to :back, :notice => "Jedlo bolo pridané k obľúbeným jedlám"
+    rescue
+      redirect_to :back, :alert => "Nastala chyba pri pridávaní jedla k obľúbeným jedlám"
+    end
+  end
+
+  def delete_food
+    begin
+      food = Food.find_by_name(params[:name])
+      current_user.foods.delete(food)
+
+      redirect_to :back, :notice => "Jedlo bola odstránené z obľúbených jedál"
+    rescue
+      redirect_to :back, :alert => "Nastala chyba pri odstraňovaní jedla z obľúbených jedál"
     end
   end
 
