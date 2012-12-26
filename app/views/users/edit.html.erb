@@ -1,5 +1,23 @@
 <h1>Editácia používateľa a nastavenia</h1>
 <%= render 'form_user_edit' %><br /><br />
 <h2>Obľúbené jedlá</h2>
-<%= link_to 'Návrat', root_path , :class => 'cancel' %>
+<table>
+  <% i = 1 %>
+  <% current_user.soups.each do |soup| %>
+      <tr>
+        <td><%= i %>.</td>
+        <td><%= soup.name %></td>
+      </tr>
+      <% i +=1 %>
+  <% end %>
+  <% current_user.foods.each do |food| %>
+      <tr>
+        <td><%= i %>.</td>
+        <td><%= food.name %></td>
+      </tr>
+      <% i +=1 %>
+  <% end %>
+</table>
+<br/>
+<%= link_to 'Návrat', :back , :class => 'cancel' %>
 <br/>
