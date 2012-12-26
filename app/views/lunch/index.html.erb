@@ -3,13 +3,13 @@
       <% i = 1 %>
       <table class="lunch_table">
         <tr>
-          <th colspan="2">
+          <th colspan="3">
             <%= restaurant.name %>, <%= restaurant.address %>
           </th>
         </tr>
         <% if restaurant.today_foods.empty? && restaurant.today_soups.empty? %>
             <tr>
-              <td colspan="2">Dnes sa nenapapkáš.</td>
+              <td>Dnes sa nenapapkáš.</td>
             </tr>
         <% else %>
             <% restaurant.today_soups.each do |soup| %>
@@ -18,6 +18,17 @@
                 <% else %>
                     <tr class="alt">
                 <% end %>
+                <td class="bookmark">
+                  <% if logged_in? && current_user.likes_soup?(soup) %>
+                      <%= link_to image_tag("star.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
+                                          image_tag("star_bw.png", :style => "position: absolute,left: 0, top:0;"),
+                                  {:controller => "lunch", :action => "delete_soup", :name => soup}, :title => "Odobrať od obľúbených jedál" %>
+                  <% else %>
+                      <%= link_to image_tag("star_bw.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
+                                          image_tag("star.png", :style => "position: absolute,left: 0, top:0;"),
+                                  {:controller => "lunch", :action => "add_soup", :name => soup}, :title => "Pridať k obľúbeným jedlám" %>
+                  <% end %>
+                </td>
                 <td class="numbering"><%= i %>.</td>
                 <td><%= link_to "#{soup.name}", soup %></td>
                 </tr>
@@ -29,6 +40,17 @@
                 <% else %>
                     <tr class="alt">
                 <% end %>
+                <td class="bookmark">
+                  <% if logged_in? && current_user.likes_food?(food) %>
+                      <%= link_to image_tag("star.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
+                                          image_tag("star_bw.png", :style => "position: absolute,left: 0, top:0;"),
+                                  {:controller => "lunch", :action => "delete_food", :name => food}, :title => "Odobrať od obľúbených jedál" %>
+                  <% else %>
+                      <%= link_to image_tag("star_bw.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
+                                          image_tag("star.png", :style => "position: absolute,left: 0, top:0;"),
+                                  {:controller => "lunch", :action => "add_food", :name => food}, :title => "Pridať k obľúbeným jedlám" %>
+                  <% end %>
+                </td>
                 <td class="numbering"><%= i %>.</td>
                 <td><%= link_to "#{food.name}", food %></td>
                 </tr>
@@ -39,3 +61,17 @@
       <br/>
   <% end %>
 </div>
+
+<script>
+    $(function()
+    {
+        $('img').hover(function()
+            {
+                $(this).stop().animate({"opacity": "0"}, 600);
+            },
+            function()
+            {
+                $(this).stop().animate({"opacity": "1"}, 600);
+            });
+    });
+</script>

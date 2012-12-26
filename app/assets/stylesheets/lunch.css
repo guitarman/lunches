@@ -194,6 +194,19 @@ a:hover
     width: 10px;
 }
 
+.lunch_table td.bookmark
+{
+    width: 29px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.lunch_table td.bookmark img
+{
+    margin: 0;
+}
+
 .lunch_table tr.alt td
 {
     background-color: #f2f2f2;
