@@ -1,19 +1,19 @@
 <h1>Editácia používateľa a nastavenia</h1>
 <%= render 'form_user_edit' %><br /><br />
 <h2>Obľúbené jedlá</h2>
-<table>
+<table class="favourite">
   <% i = 1 %>
   <% current_user.soups.each do |soup| %>
       <tr>
         <td><%= i %>.</td>
-        <td><%= soup.name %></td>
+        <td class="name"><%= link_to "#{soup.name}", soup %></td>
       </tr>
       <% i +=1 %>
   <% end %>
   <% current_user.foods.each do |food| %>
       <tr>
         <td><%= i %>.</td>
-        <td><%= food.name %></td>
+        <td class="name"><%= link_to "#{food.name}", food %></td>
       </tr>
       <% i +=1 %>
   <% end %>
