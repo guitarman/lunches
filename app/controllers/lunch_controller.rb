@@ -113,19 +113,23 @@ class LunchController < ApplicationController
   end
 
   def save_food(food_name, restaurant)
-    day_menu = DayMenu.create(:for_day => Time.now)
-    food = Food.find_or_create_by_name(food_name)
+    unless food_name.empty?
+      day_menu = DayMenu.create(:for_day => Time.now)
+      food = Food.find_or_create_by_name(food_name)
 
-    food.day_menus << day_menu
-    restaurant.day_menus << day_menu
+      food.day_menus << day_menu
+      restaurant.day_menus << day_menu
+    end
   end
 
   def save_soup(soup_name, restaurant)
-    day_menu = DayMenu.create(:for_day => Time.now)
-    soup = Soup.find_or_create_by_name(soup_name)
+    unless soup_name.empty?
+      day_menu = DayMenu.create(:for_day => Time.now)
+      soup = Soup.find_or_create_by_name(soup_name)
 
-    soup.day_menus << day_menu
-    restaurant.day_menus << day_menu
+      soup.day_menus << day_menu
+      restaurant.day_menus << day_menu
+    end
   end
 
   def get_ekonom(restaurant)
