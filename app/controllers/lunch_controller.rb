@@ -20,8 +20,8 @@ class LunchController < ApplicationController
     @restaurants = Restaurant.all
     @messages = []
 
-    begin
-      @restaurants.each do |restaurant|
+    @restaurants.each do |restaurant|
+      begin
         if restaurant.name.include?("Ekon")
           get_ekonom(restaurant)
         end
@@ -37,10 +37,9 @@ class LunchController < ApplicationController
         if restaurant.name.include?("Presto")
           get_presto(restaurant)
         end
-      end
-
-    rescue Error => e
+      rescue Error => e
         @messages << e.message
+      end
     end
 
     if @messages.any?
