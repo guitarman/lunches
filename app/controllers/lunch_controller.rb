@@ -54,7 +54,7 @@ class LunchController < ApplicationController
 
   def add_soup
     begin
-      soup = Soup.find_by_name(params[:name])
+      soup = Soup.find(params[:id])
       current_user.soups << soup
 
       redirect_to :back, :notice => "Polievka bola pridaná k obľúbeným jedlám"
@@ -65,7 +65,7 @@ class LunchController < ApplicationController
 
   def delete_soup
     begin
-      soup = Soup.find_by_name(params[:name])
+      soup = Soup.find(params[:id])
       current_user.soups.delete(soup)
 
       redirect_to :back, :notice => "Polievka bola odstránená z obľúbených jedál"
@@ -76,7 +76,7 @@ class LunchController < ApplicationController
 
   def add_food
     begin
-      food = Food.find_by_name(params[:name])
+      food = Food.find(params[:id])
       current_user.foods << food
 
       redirect_to :back, :notice => "Jedlo bolo pridané k obľúbeným jedlám"
@@ -87,7 +87,7 @@ class LunchController < ApplicationController
 
   def delete_food
     begin
-      food = Food.find_by_name(params[:name])
+      food = Food.find(params[:id])
       current_user.foods.delete(food)
 
       redirect_to :back, :notice => "Jedlo bola odstránené z obľúbených jedál"

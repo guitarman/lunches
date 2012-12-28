@@ -6,7 +6,7 @@
   <% current_user.soups.each do |soup| %>
       <tr>
         <td class="action">
-          <%= link_to image_tag("remove.png"), {:controller => "lunch", :action => "delete_soup", :name => soup}, :title => "Odobrať od obľúbených jedál" %>
+          <%= link_to image_tag("remove.png"), {:controller => "lunch", :action => "delete_soup", :id => soup}, :title => "Odobrať od obľúbených jedál" %>
         </td>
         <td class="numbering"><%= i %>.</td>
         <td class="name"><%= link_to "#{soup.name}", soup %></td>
@@ -16,7 +16,7 @@
   <% current_user.foods.each do |food| %>
       <tr>
         <td class="action">
-          <%= link_to image_tag("remove.png"), {:controller => "lunch", :action => "delete_food", :name => food}, :title => "Odobrať od obľúbených jedál" %>
+          <%= link_to image_tag("remove.png"), {:controller => "lunch", :action => "delete_food", :id => food}, :title => "Odobrať od obľúbených jedál" %>
         </td>
         <td class="numbering"><%= i %>.</td>
         <td class="name"><%= link_to "#{food.name}", food %></td>

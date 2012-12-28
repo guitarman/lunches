@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
 
   def show
-    @food = Food.find_by_name(params[:id])
+    @food = Food.find(params[:id])
 
     respond_to do |format|
       format.html #show.html.erb

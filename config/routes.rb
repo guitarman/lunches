@@ -12,8 +12,11 @@ Lunches::Application.routes.draw do
 
   match 'settings' => 'users#edit', :as => :settings, :via => :get
 
-  match 'lunch/add_soup/:name' => 'lunch#add_soup'
-  match 'lunch/add_food/:name' => 'lunch#add_food'
+  match 'lunch/add_soup/:id' => 'lunch#add_soup'
+  match 'lunch/remove_soup/:id' => 'lunch#remove_soup'
+
+  match 'lunch/add_food/:id' => 'lunch#add_food'
+  match 'lunch/remove_food/:id' => 'lunch#remove_food'
   #match 'remove_favourite_soup' => 'lunch#remove_soup/:id', :as => :remove_favourite_soup
 
   match ':controller(/:action(/:id(.format)))'

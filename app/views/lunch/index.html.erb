@@ -22,11 +22,11 @@
                   <% if logged_in? && current_user.likes_soup?(soup) %>
                       <%= link_to image_tag("star.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
                                           image_tag("star_bw.png", :style => "position: absolute,left: 0, top:0;"),
-                                  {:controller => "lunch", :action => "delete_soup", :name => soup}, :title => "Odobrať od obľúbených jedál" %>
+                                  {:controller => "lunch", :action => "delete_soup", :id => soup}, :title => "Odobrať od obľúbených jedál" %>
                   <% else %>
                       <%= link_to image_tag("star_bw.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
                                           image_tag("star.png", :style => "position: absolute,left: 0, top:0;"),
-                                  {:controller => "lunch", :action => "add_soup", :name => soup}, :title => "Pridať k obľúbeným jedlám" %>
+                                  {:controller => "lunch", :action => "add_soup", :id => soup}, :title => "Pridať k obľúbeným jedlám" %>
                   <% end %>
                 </td>
                 <td class="numbering"><%= i %>.</td>
@@ -44,11 +44,11 @@
                   <% if logged_in? && current_user.likes_food?(food) %>
                       <%= link_to image_tag("star.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
                                           image_tag("star_bw.png", :style => "position: absolute,left: 0, top:0;"),
-                                  {:controller => "lunch", :action => "delete_food", :name => food}, :title => "Odobrať od obľúbených jedál" %>
+                                  {:controller => "lunch", :action => "delete_food", :id => food}, :title => "Odobrať od obľúbených jedál" %>
                   <% else %>
                       <%= link_to image_tag("star_bw.png", :style => "position: absolute; left: 0, top:0, z-index: 10;") +
                                           image_tag("star.png", :style => "position: absolute,left: 0, top:0;"),
-                                  {:controller => "lunch", :action => "add_food", :name => food}, :title => "Pridať k obľúbeným jedlám" %>
+                                  {:controller => "lunch", :action => "add_food", :id => food}, :title => "Pridať k obľúbeným jedlám" %>
                   <% end %>
                 </td>
                 <td class="numbering"><%= i %>.</td>
