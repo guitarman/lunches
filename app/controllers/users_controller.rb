@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to root_url, :notice => "Údaje boli úspešne aktualizované"
+      redirect_to settings_path, :notice => "Údaje boli úspešne aktualizované"
     else
       render :action => 'edit'
     end
