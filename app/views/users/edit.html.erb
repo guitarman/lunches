@@ -1,5 +1,17 @@
 <h1>Editácia používateľa a nastavenia</h1>
+<h2>Email a heslo</h2>
 <%= render 'form_user_edit' %><br /><br />
+<h2>Ďaľšie nastavenia</h2>
+<%= form_for(@user) do |f| %>
+    <div class="field">
+      <%= 'Emailová notifikácia o obľúbenom jedle' %>
+      <br/>
+      <%= f.check_box :email_notification %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Nastaviť' %>
+    </div>
+<% end %><br /><br />
 <h2>Obľúbené jedlá</h2>
 <table class="favourite">
   <% i = 1 %>
