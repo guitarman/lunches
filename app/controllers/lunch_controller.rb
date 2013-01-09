@@ -113,7 +113,7 @@ class LunchController < ApplicationController
   end
 
   def save_food(food_name, restaurant)
-    unless food_name.empty?
+    unless food_name.nil? || food_name.empty?
       day_menu = DayMenu.create(:for_day => Time.now)
       food = Food.find_or_create_by_name(food_name)
 
@@ -123,7 +123,7 @@ class LunchController < ApplicationController
   end
 
   def save_soup(soup_name, restaurant)
-    unless soup_name.empty?
+    unless soup_name.nil? || soup_name.empty?
       day_menu = DayMenu.create(:for_day => Time.now)
       soup = Soup.find_or_create_by_name(soup_name)
 
@@ -149,7 +149,7 @@ class LunchController < ApplicationController
   def get_lodnik(restaurant)
     page = open_page(restaurant.url)
     node = page.xpath('//div[(@class="texthelpods") and (contains(., "Polievka:"))]').first
-    if node.children().count >= 13
+    if node.children().count >= 10
       #soup
       soup = node.children()[2].text
       save_soup(soup.to_s.gsub("Polievka:", "").strip, restaurant)
@@ -204,14 +204,14 @@ class LunchController < ApplicationController
       offset = day_num*8
 
       if nodes.count > (offset + 5)
-        save_soup(nodes[offset + 0].text.strip, restaurant)
-        save_soup(soup2 = nodes[offset + 1].text.strip, restaurant)
+        save_soup(split_food_and_soup(nodes[offset + 0].text.strip).strip, restaurant)
+        save_soup(split_food_and_soup(soup2 = nodes[offset + 1].text.strip).strip, restaurant)
 
-        save_food(nodes[offset + 2].text.strip, restaurant)
-        save_food(nodes[offset + 3].text.strip, restaurant)
-        save_food(nodes[offset + 4].text.strip, restaurant)
-        save_food(nodes[offset + 5].text.strip, restaurant)
-        save_food(nodes[offset + 6].text.strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 2].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 3].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 4].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 5].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 6].text.strip).strip, restaurant)
       end
     end
   end
@@ -224,14 +224,18 @@ class LunchController < ApplicationController
       offset = day_num*8
 
       if nodes.count > (offset + 5)
-          save_soup(nodes[offset + 0].text.strip, restaurant)
-          save_soup(nodes[offset + 1].text.strip, restaurant)
+        save_soup(split_food_and_soup(nodes[offset + 0].text.strip).strip, restaurant)
+        save_soup(split_food_and_soup(nodes[offset + 1].text.strip).strip, restaurant)
 
-          save_food(nodes[offset + 2].text.strip, restaurant)
-          save_food(nodes[offset + 3].text.strip, restaurant)
-          save_food(nodes[offset + 4].text.strip, restaurant)
-          save_food(nodes[offset + 5].text.strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 2].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 3].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 4].text.strip).strip, restaurant)
+        save_food(split_food_and_soup(nodes[offset + 5].text.strip).strip, restaurant)
       end
     end
+  end
+
+  def split_food_and_soup(name)
+    name.split('/ ')[0]
   end
 end
