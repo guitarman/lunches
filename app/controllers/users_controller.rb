@@ -1,6 +1,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
+  force_ssl :only => [:edit, :update]
+  before_filter :authenticate, :only => [:create, :edit, :update]
 
   def new
     @user = User.new
