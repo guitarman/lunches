@@ -34,10 +34,10 @@
 		  <span class="user_nav">
 			<% if logged_in? %>
 				<%= link_to current_user.email, settings_path, :title => "Upraviť profil" %>
-				<!--<%= current_user.email %>-->
                 | <%= link_to "Odhlásiť", logout_path, :title => "Odhlásiť sa" %>
 			<% else %>
-				<%= link_to "Prihlásiť", login_path, :title => "Prihlásiť sa" %> | <%= link_to "Registrovať", new_user_path, :title => "Registrovať sa" %>
+				<%= link_to "Prihlásiť", login_path, :title => "Prihlásiť sa" %>
+                | <%= link_to "Registrovať", new_user_path, :title => "Registrovať sa" %>
 			<% end %>
 		  </span>
         </div>
@@ -45,7 +45,9 @@
 
       <div id="content_container" class="content_container">
         <div id="content" class="content">
-
+          <div class="sub_header">
+            Dnes je <%= day_name_and_date %>
+          </div>
           <div class="flash_message">
             <%= content_tag :p, notice, :class => 'notice' if notice.present? %>
             <%= content_tag :p, alert, :class => 'alert' if alert.present? %>
