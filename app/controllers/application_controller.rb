@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  force_ssl
+  #force_ssl
 
   def current_user
     return unless session[:user_id]

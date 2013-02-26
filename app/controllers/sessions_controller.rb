@@ -1,6 +1,6 @@
 # encoding: utf-8
 class SessionsController < ApplicationController
-  force_ssl
+  #force_ssl
   before_filter :authenticate, :only => :destroy
 
   def create
