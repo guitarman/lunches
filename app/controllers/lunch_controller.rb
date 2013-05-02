@@ -32,7 +32,7 @@ class LunchController < ApplicationController
           get_mlyn(restaurant)
         end
         if restaurant.name.include?("Sit")
-          get_siteat(restaurant)
+          get_presto(restaurant)
         end
         if restaurant.name.include?("Presto")
           get_presto(restaurant)
@@ -212,25 +212,6 @@ class LunchController < ApplicationController
         save_food(split_food_and_soup(nodes[offset + 4].text.strip).strip, restaurant)
         save_food(split_food_and_soup(nodes[offset + 5].text.strip).strip, restaurant)
         save_food(split_food_and_soup(nodes[offset + 6].text.strip).strip, restaurant)
-      end
-    end
-  end
-
-  def get_siteat(restaurant)
-    day_num = Time.now.wday - 1
-    if day_num >= 0 && day_num <= 4
-      page = open_page(restaurant.url)
-      nodes = page.xpath('//td[@class = "cell-description"]')
-      offset = day_num*8
-
-      if nodes.count > (offset + 5)
-        save_soup(split_food_and_soup(nodes[offset + 0].text.strip).strip, restaurant)
-        save_soup(split_food_and_soup(nodes[offset + 1].text.strip).strip, restaurant)
-
-        save_food(split_food_and_soup(nodes[offset + 2].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 3].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 4].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 5].text.strip).strip, restaurant)
       end
     end
   end
