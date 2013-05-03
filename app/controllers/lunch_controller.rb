@@ -32,10 +32,10 @@ class LunchController < ApplicationController
           get_mlyn(restaurant)
         end
         if restaurant.name.include?("Sit")
-          get_presto(restaurant)
+          get_presto(restaurant, 7, 4)
         end
         if restaurant.name.include?("Presto")
-          get_presto(restaurant)
+          get_presto(restaurant, 8, 5)
         end
       rescue Error => e
         @messages << e.message
@@ -196,22 +196,20 @@ class LunchController < ApplicationController
     end
   end
 
-  def get_presto(restaurant)
+  def get_presto(restaurant, offset, number_of_foods)
     day_num = Time.now.wday - 1
     if day_num >= 0 && day_num <= 4
       page = open_page(restaurant.url)
       nodes = page.xpath('//td[@class = "cell-description"]')
-      offset = day_num*8
+      offset = day_num*offset
 
       if nodes.count > (offset + 5)
         save_soup(split_food_and_soup(nodes[offset + 0].text.strip).strip, restaurant)
         save_soup(split_food_and_soup(soup2 = nodes[offset + 1].text.strip).strip, restaurant)
 
-        save_food(split_food_and_soup(nodes[offset + 2].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 3].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 4].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 5].text.strip).strip, restaurant)
-        save_food(split_food_and_soup(nodes[offset + 6].text.strip).strip, restaurant)
+        number_of_foods.times do |i|
+          save_food(split_food_and_soup(nodes[offset + i + 2].text.strip).strip, restaurant)
+        end
       end
     end
   end
