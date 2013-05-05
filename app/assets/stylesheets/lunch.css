@@ -225,6 +225,17 @@ a:hover
     background-color: #e9e9e9;
 }
 
+.lunch_table .no_food{
+    text-align: left;
+}
+
+.lunch_table .no_food img{
+    display: inline;
+    vertical-align: middle;
+    padding-right: 7px;
+    padding-bottom: 4px;
+}
+
 .favourite
 {
 
@@ -299,15 +310,6 @@ form input[type=submit] {
 form .field_with_errors input, form .field_with_errors  textarea{
     width: 250px;
     border: 1px solid #c00;
-}
-
-.no_food{
-    text-align: center;
-}
-
-.no_food img{
-    vertical-align: middle;
-    padding-right: 7px;
 }
 
 #errorExplanation {
