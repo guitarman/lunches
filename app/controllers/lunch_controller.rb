@@ -191,11 +191,15 @@ class LunchController < ApplicationController
       offset = day_num*offset
 
       if nodes.count > (offset + 5)
-        save_soup(split_food_and_soup(nodes[offset + 0].text.strip).strip, restaurant)
-        save_soup(split_food_and_soup(soup2 = nodes[offset + 1].text.strip).strip, restaurant)
+        if  nodes[offset + 0].text.strip == '' || nodes[offset + 1].text.strip == ''
+          return
+        else
+          save_soup(split_food_and_soup(nodes[offset + 0].text.strip).strip, restaurant)
+          save_soup(split_food_and_soup(soup2 = nodes[offset + 1].text.strip).strip, restaurant)
 
-        number_of_foods.times do |i|
-          save_food(split_food_and_soup(nodes[offset + i + 2].text.strip).strip, restaurant)
+          number_of_foods.times do |i|
+            save_food(split_food_and_soup(nodes[offset + i + 2].text.strip).strip, restaurant)
+          end
         end
       end
     end
