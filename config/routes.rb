@@ -1,11 +1,13 @@
 Lunches::Application.routes.draw do
-  get "lunch/index"
+  get "lunch/index/"
   root :to => "lunch#index"
 
   resources :users
   resources :foods
   resources :soups
   resource :session
+
+  match '/:date' => "lunch#index", :constraints => { :date => /\d{4}-\d{1,2}-\d{1,2}/ }
 
   match '/login' => "sessions#new", :as => "login"
   match '/logout' => "sessions#destroy", :as => "logout"

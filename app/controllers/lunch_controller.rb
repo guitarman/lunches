@@ -9,6 +9,11 @@ class LunchController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
+    begin
+      @date = DateTime.parse(params[:date]) + 10.hour
+    rescue
+      @date = DateTime.now
+    end
 
     respond_to do |format|
       format.html #index.html.erb
@@ -149,7 +154,7 @@ class LunchController < ApplicationController
   def get_lodnik(restaurant)
     page = open_page(restaurant.url)
     node = page.xpath('//div[(@class="texthelpods") and (contains(., "Polievka:"))]').first
-    if node.children().count >= 10
+    if !node.nil? && node.children().count >= 10
       #soup
       soup = node.children()[2].text
       save_soup(soup.to_s.gsub("Polievka:", "").strip, restaurant)

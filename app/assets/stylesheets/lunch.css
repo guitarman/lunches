@@ -163,6 +163,28 @@ a:hover
     color: #eb0000;
 }
 
+.days_navigation
+{
+    margin: auto;
+    width: 85%;
+}
+
+.day
+{
+    text-align: center;
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+}
+
+.selected_day
+{
+    text-align: center;
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    background-color: #90e4ff
+;
+}
+
 .lunch_table
 {
     margin: auto;
