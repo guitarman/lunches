@@ -45,9 +45,6 @@
 
       <div id="content_container" class="content_container">
         <div id="content" class="content">
-          <div class="sub_header">
-            Dnes je <%= day_name_and_date %>
-          </div>
           <div class="flash_message">
             <%= content_tag :p, notice, :class => 'notice' if notice.present? %>
             <%= content_tag :p, alert, :class => 'alert' if alert.present? %>
